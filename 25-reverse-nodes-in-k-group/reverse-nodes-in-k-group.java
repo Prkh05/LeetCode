@@ -17,20 +17,21 @@ class Solution {
             }
             temp = temp.next;
         }
-        ListNode prev = null;
-        ListNode curr = head;
-        int cnt = 0;
+        ListNode newhead = reverse(head , temp);
+        head.next = reverseKGroup(temp , k);
+        return newhead;
 
-        while(cnt<k){
-            ListNode temp1 = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = temp1;
-            cnt ++;
+        
+    }
+    public ListNode reverse(ListNode cur , ListNode end){
+        ListNode prev = null;
+        while(cur != end){
+            ListNode next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
         }
-        head.next =  reverseKGroup(temp,k);
         return prev;
     }
     
-
 }
